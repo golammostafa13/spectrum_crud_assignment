@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "Riaad Morshed",
+      "email": "riaad@gmail.com",
+      "address": "Noakhali, Bangladesh",
+      "mobile": "01824-XXXXXX",
+      "image": null
+    },
+    {
+      "id": 2,
+      "name": "Golam Mostafa",
+      "email": "mostafarmstu@gmail.com",
+      "address": "Cumilla, Bangladesh",
+      "mobile": "01516-715333",
+      "image": null
+    }
+  ],
+  "signupUsers": [
+    {
+      "name": "Rajib",
+      "email": "rajib@gmail.com",
+      "password": "12345",
+      "mobile": "01514-XXXXXX",
+      "id": 1
+    },
+    {
+      "name": "mostafarmstu",
+      "email": "mostafarmstu@gmail.com",
+      "password": "12345",
+      "mobile": "1234567899876",
+      "id": 2
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

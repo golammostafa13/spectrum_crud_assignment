@@ -1,0 +1,89 @@
+<div class="layout">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">SPECTRUM</a>
+        <form class="form-inline">
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-outline-success my-2 my-sm-0" (click)="addBtnHandler()">Add User</button>
+            <button routerLink="/login" type="button" class="btn btn-outline-danger ml-2">Logout</button>
+        </form>
+    </nav>
+    
+    <table class="table mt-2 text-center">
+        <thead>
+            <tr>
+                <th scope="col">User ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact No</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of userData" class="table_row bg-light">
+                <td>{{row.id}}</td>
+                <td><img class="rounded-circle" width="50" height="50" [src]="imgUrl" /></td>
+                <td>{{row.name}}</td>
+                <td>{{row.address}}</td>
+                <td>{{row.email}}</td>
+                <td>{{row.mobile}}</td>
+                <td>
+                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-outline-primary mr-2" (click)="editUser(row)" >Edit</button>
+                    <button class="btn btn-outline-danger" (click)="deleteUser(row)" >Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">User Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue" (ngSubmit)="submitHandler()">
+                    <div class="form-group">
+                        <label for="exampleInputName">Full Name</label>
+                        <input type="text" formControlName="name" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Enter name">
+                        <small *ngIf="formValue.controls['name'].invalid && formValue.controls['name'].touched" class="error text-danger">Enter a valid name</small>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="exampleFormControlFile1">Upload Image</label>
+                        <input (change)="imageHandler($event)" type="file" formControlName="image" class="form-control-file" id="exampleFormControlFile1">
+                    </div> -->
+
+                    <!-- email -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email"
+                        formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small *ngIf="formValue.controls['email'].invalid && formValue.controls['email'].touched" class="error text-danger">Email is invalid</small>  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputAddress">Address</label>
+                        <input type="text" formControlName="address" class="form-control" id="exampleInputAddress" aria-describedby="emailHelp" placeholder="Your Address" required>
+                        <small *ngIf="formValue.controls['address'].invalid && formValue.controls['address'].touched" class="error text-danger">Minimum 3 length address</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputContact">Contact No</label>
+                        <input type="text" formControlName="mobile" class="form-control" id="exampleInputContact" aria-describedby="emailHelp" placeholder="Contact No" required>
+                        <small *ngIf="formValue.controls['mobile'].invalid && formValue.controls['mobile'].touched" class="error text-danger">Mobile number is invalid</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button *ngIf="showAdd" [disabled]="formValue.invalid" type="submit" class="btn btn-outline-primary" (click)="postUserDetails()">Add</button>
+                <button *ngIf="showUpdate" [disabled]="formValue.invalid" type="submit" class="btn btn-outline-primary" (click)="updateUserDetails()">Update</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
